@@ -17,6 +17,7 @@ defmodule FauxmazonWeb.Router do
   scope "/", FauxmazonWeb do
     pipe_through :browser
 
+    get "/hello", HelloController, :index
     get "/", PageController, :home
   end
 
@@ -41,4 +42,6 @@ defmodule FauxmazonWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+
 end

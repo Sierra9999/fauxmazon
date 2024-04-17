@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :fauxmazon, Fauxmazon.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "1037659919",
   hostname: "localhost",
   database: "fauxmazon_dev",
   stacktrace: true,
