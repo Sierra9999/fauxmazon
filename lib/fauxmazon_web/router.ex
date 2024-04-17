@@ -17,7 +17,7 @@ defmodule FauxmazonWeb.Router do
   scope "/", FauxmazonWeb do
     pipe_through :browser
 
-    get "/hello", HelloController, :index
+    get "/product", HelloController, :index
     get "/", PageController, :home
   end
 
