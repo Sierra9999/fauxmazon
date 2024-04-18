@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :fauxmazon, Fauxmazon.Repo,
-  username: "postgres",
-  password: "1037659919",
+  username: "fauxmazon",
+  password: "fauxmazon",
   hostname: "localhost",
-  database: "fauxmazon_dev",
+  database: "fauxmazon",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
