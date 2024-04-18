@@ -18,6 +18,8 @@ defmodule FauxmazonWeb.Router do
     pipe_through :browser
 
     get "/product", HelloController, :index
+    get "/product/:id", HelloController, :show
+    get "/product/category/:category", HelloController, :show_by_category
     get "/", PageController, :home
   end
 
