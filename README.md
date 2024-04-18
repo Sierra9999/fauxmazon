@@ -19,16 +19,17 @@ Products in the Fauxmazon API have the following properties:
 - **Stock**: The current stock or inventory of the product.
 - **Image URL**: The URL of an image representing the product.
 - **Rating**: The average rating of the product (if applicable).
-- **Reviews**: Reviews or comments from customers (if applicable).
 
 ### Entry Points
 
 The following entry points are available in the Fauxmazon API:
 
-1. **Get Product by ID**: `GET /products/:id`
-2. **Get All Products**: `GET /products`
-3. **Get Products by Category**: `GET /products?category=<category>`
-4. **Search Products**: `GET /products?q=<query>`
+1. **Get All Products**: <br/>
+  ```[GET] http://localhost:4000/products```
+2. **Get Product by ID**: <br/>
+  ```[GET] http://localhost:4000/products/:id```
+3. **Search By Category**: <br/>
+  ```[GET] http://localhost:4000/products/category/:category```
 
 These entry points allow users to retrieve product information, search for products, and filter products by category. Additional functionality may be added in future updates.
 
