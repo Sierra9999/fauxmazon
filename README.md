@@ -30,6 +30,8 @@ The following entry points are available in the Fauxmazon API:
   ```[GET] http://localhost:4000/products/:id```
 3. **Search By Category**: <br/>
   ```[GET] http://localhost:4000/products/category/:category```
+4. **Search By Name**: <br/>
+   ```[GET] http://localhost:4000/products/search?name={name}```
 
 These entry points allow users to retrieve product information, search for products, and filter products by category. Additional functionality may be added in future updates.
 
