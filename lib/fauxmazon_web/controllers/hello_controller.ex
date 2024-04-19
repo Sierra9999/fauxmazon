@@ -19,4 +19,12 @@ defmodule FauxmazonWeb.HelloController do
     products = Repo.all(query)
     json(conn, products)
   end
+
+  def show_by_name(conn, params) do
+    name = Map.get(params, "name", "")
+    query = from p in Products,
+    where: ilike(p.name,^"%#{name}%")
+    product = Repo.all(query)
+    json(conn, product)
+  end
 end
