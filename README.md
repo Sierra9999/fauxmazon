@@ -20,6 +20,14 @@ Products in the Fauxmazon API have the following properties:
 - **Image URL**: The URL of an image representing the product.
 - **Rating**: The average rating of the product (if applicable).
 
+### Collection Interface
+
+Collections in the Fauxmazon API have the following properties:
+
+- **Name**: The name of the collection.
+- **Description**: A brief description of the collection.
+- **Status**: Indicates whether the collection is active or inactive.
+
 ### Entry Points
 
 The following entry points are available in the Fauxmazon API:
