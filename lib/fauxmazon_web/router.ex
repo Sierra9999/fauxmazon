@@ -14,15 +14,20 @@ defmodule FauxmazonWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/products", FauxmazonWeb do
+    pipe_through :api
+
+    get "/", HelloController, :index
+    get "/search", HelloController, :show_by_name
+    get "/:id", HelloController, :show
+    get "/category/:category", HelloController, :show_by_category
+  end
+
   scope "/", FauxmazonWeb do
     pipe_through :browser
-
-    get "/products", HelloController, :index
-    get "/products/:id", HelloController, :show
-    get "/products/category/:category", HelloController, :show_by_category
-    get "/products/search", HelloController, :show_by_name
-    get "/", PageController, :home
+      get "/", PageController, :home
   end
+
   scope "/collections",FauxmazonWeb do
     pipe_through :browser
     get "/", CollectionsController, :index
