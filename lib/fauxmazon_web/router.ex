@@ -23,7 +23,10 @@ defmodule FauxmazonWeb.Router do
     get "/products/search", HelloController, :show_by_name
     get "/", PageController, :home
   end
-
+  scope "/collections",FauxmazonWeb do
+    pipe_through :browser
+    get "/", CollectionsController, :index
+  end
   # Other scopes may use custom stacks.
   # scope "/api", FauxmazonWeb do
   #   pipe_through :api
