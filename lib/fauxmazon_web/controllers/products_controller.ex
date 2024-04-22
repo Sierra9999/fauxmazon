@@ -1,13 +1,24 @@
 defmodule FauxmazonWeb.ProductsController do
+  alias Fauxmazon.Products
   use FauxmazonWeb, :controller
-  alias Fauxmazon.{Products, Repo}
+  import Products
   import Ecto.Query
+  alias Fauxmazon.{Products, Repo}
+
   def index(conn, _params) do
-    products = Repo.all(Products)
-    json(conn, products)
+    json(conn, all_products())
   end
+  def show_by_id(conn, %{"id" => id}) do
+    json(conn, by_id(id))
+  end
+
+  def show_by_name(conn, params) do
+    name = Map.get(params, "name", "")
+    json(conn, by_name(name))
+  end
+
   def show_by_collection(conn, %{"collection_id" => collection_id}) do
-    query = from p in Products,\
+    query = from p in Products,
      where: p.collection_id == ^collection_id
     products = Repo.all(query)
     if Enum.empty?(products) do
@@ -19,24 +30,11 @@ defmodule FauxmazonWeb.ProductsController do
       |> json(products)
     end
   end
-  def show(conn, %{"id" => id}) do
-    product = Repo.get(Products, id)
-    json(conn, product)
-  end
 
   def show_by_category(conn, %{"category" => category}) do
     capitalized_category = String.capitalize category
-    query = from p in Products,
-     where: p.category == ^capitalized_category
-    products = Repo.all(query)
-    json(conn, products)
+    json(conn, by_category(capitalized_category))
   end
 
-  def show_by_name(conn, params) do
-    name = Map.get(params, "name", "")
-    query = from p in Products,
-    where: ilike(p.name,^"%#{name}%")
-    product = Repo.all(query)
-    json(conn, product)
-  end
+
 end

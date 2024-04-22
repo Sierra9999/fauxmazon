@@ -1,6 +1,7 @@
 defmodule Fauxmazon.Products do
   use Ecto.Schema
-
+  import Ecto.Query
+  alias Fauxmazon.{Products, Repo}
   @derive {Jason.Encoder, only: [
     :id,
     :name,
@@ -26,4 +27,25 @@ defmodule Fauxmazon.Products do
     # updated_at
     # default fields expected by timestamps()
   end
+
+  def all_products do
+    Repo.all(Products)
+  end
+
+  def by_id(id) do
+    Repo.get(Products, id)
+  end
+
+  def by_category(category) do
+    query = from p in Products,
+    where: p.category == ^category
+    Repo.all(query)
+  end
+  def by_name(name) do
+    query = from p in Products,
+    where: ilike(p.name,^"%#{name}%")
+    Repo.all(query)
+  end
+
+
 end

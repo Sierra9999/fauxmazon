@@ -19,7 +19,7 @@ defmodule FauxmazonWeb.Router do
 
     get "/", ProductsController, :index
     get "/search", ProductsController, :show_by_name
-    get "/:id", ProductsController, :show
+    get "/:id", ProductsController, :show_by_id
     get "/category/:category", ProductsController, :show_by_category
     get "/by-collection/:collection_id", ProductsController, :show_by_collection
   end
