@@ -6,7 +6,21 @@ defmodule FauxmazonWeb.HelloController do
     products = Repo.all(Products)
     json(conn, products)
   end
-
+  def show_by_collection(conn, %{"collection_id" => collection_id}) do
+    if !is_number(collection_id),
+      do: json(put_status(conn,404), %{"error" => "invalid id parameter"})
+    query = from p in Products,\
+     where: p.collection_id == ^collection_id
+    products = Repo.all(query)
+    if Enum.empty?(products) do
+      conn
+      |> put_status(404)
+      |> json(%{"error" => "No products found in the collection or the collection is empty"})
+    else
+      conn
+      |> json(products)
+    end
+  end
   def show(conn, %{"id" => id}) do
     product = Repo.get(Products, id)
     json(conn, product)

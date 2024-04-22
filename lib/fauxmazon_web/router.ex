@@ -21,6 +21,7 @@ defmodule FauxmazonWeb.Router do
     get "/search", HelloController, :show_by_name
     get "/:id", HelloController, :show
     get "/category/:category", HelloController, :show_by_category
+    get "/by-collection/:collection_id", HelloController, :show_by_collection
   end
 
   scope "/collections",FauxmazonWeb do
