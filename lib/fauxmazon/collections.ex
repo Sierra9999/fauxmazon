@@ -6,15 +6,13 @@ defmodule Fauxmazon.Collections do
     :id,
     :name,
     :description,
-    :active,
-    :created_at,
+    :inserted_at,
     :updated_at]}
   schema "collections" do
     field :name, :string
     field :description, :string
-    field :active, :boolean
-    field :created_at, :string
-    field :updated_at, :string
+    field :inserted_at, :utc_datetime
+    field :updated_at, :utc_datetime
   end
 
 

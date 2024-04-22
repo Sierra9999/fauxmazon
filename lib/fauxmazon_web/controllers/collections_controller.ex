@@ -1,6 +1,8 @@
 defmodule FauxmazonWeb.CollectionsController do
   use FauxmazonWeb, :controller
+  alias Fauxmazon.{Collections, Repo}
   def index(conn,_params) do
-    text(conn, "imagine a list of all the collections available")
+    collections = Repo.all(Collections)
+    json(conn, collections)
   end
 end

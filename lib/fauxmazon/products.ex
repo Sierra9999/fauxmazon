@@ -10,7 +10,8 @@ defmodule Fauxmazon.Products do
     :brand,
     :stock,
     :image_url,
-    :rating]}
+    :rating,
+    :collection_id]}
   schema "products" do
     field :name, :string
     field :description, :string
@@ -20,5 +21,9 @@ defmodule Fauxmazon.Products do
     field :stock, :integer
     field :image_url, :string
     field :rating, :decimal
+    field :collection_id, :integer
+    # inserted_at
+    # updated_at
+    # default fields expected by timestamps()
   end
 end
