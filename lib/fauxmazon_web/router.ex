@@ -17,11 +17,11 @@ defmodule FauxmazonWeb.Router do
   scope "/products", FauxmazonWeb do
     pipe_through :api
 
-    get "/", HelloController, :index
-    get "/search", HelloController, :show_by_name
-    get "/:id", HelloController, :show
-    get "/category/:category", HelloController, :show_by_category
-    get "/by-collection/:collection_id", HelloController, :show_by_collection
+    get "/", ProductsController, :index
+    get "/search", ProductsController, :show_by_name
+    get "/:id", ProductsController, :show
+    get "/category/:category", ProductsController, :show_by_category
+    get "/by-collection/:collection_id", ProductsController, :show_by_collection
   end
 
   scope "/collections",FauxmazonWeb do

@@ -1,4 +1,4 @@
-defmodule FauxmazonWeb.HelloController do
+defmodule FauxmazonWeb.ProductsController do
   use FauxmazonWeb, :controller
   alias Fauxmazon.{Products, Repo}
   import Ecto.Query
@@ -7,8 +7,6 @@ defmodule FauxmazonWeb.HelloController do
     json(conn, products)
   end
   def show_by_collection(conn, %{"collection_id" => collection_id}) do
-    if !is_number(collection_id),
-      do: json(put_status(conn,404), %{"error" => "invalid id parameter"})
     query = from p in Products,\
      where: p.collection_id == ^collection_id
     products = Repo.all(query)
