@@ -1,4 +1,4 @@
-defmodule Fauxmazon.Collections do
+defmodule Fauxmazon.Categories do
 
   use Ecto.Schema
 
@@ -8,7 +8,7 @@ defmodule Fauxmazon.Collections do
     :description,
     :inserted_at,
     :updated_at]}
-  schema "collections" do
+  schema "categories" do
     field :name, :string
     field :description, :string
     field :inserted_at, :utc_datetime

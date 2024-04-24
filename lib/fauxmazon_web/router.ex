@@ -21,12 +21,11 @@ defmodule FauxmazonWeb.Router do
     get "/search", ProductsController, :show_by_name
     get "/:id", ProductsController, :show_by_id
     get "/category/:category", ProductsController, :show_by_category
-    get "/by-collection/:collection_id", ProductsController, :show_by_collection
   end
 
-  scope "/collections",FauxmazonWeb do
+  scope "/categories",FauxmazonWeb do
     pipe_through :browser
-    get "/", CollectionsController, :index
+    get "/", CategoriesController, :index
   end
 
   scope "/", FauxmazonWeb do
