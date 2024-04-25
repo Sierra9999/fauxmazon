@@ -31,10 +31,6 @@ defmodule Fauxmazon.Products do
     Repo.all(Products)
   end
 
-  def by_id(id) do
-    Repo.get(Products, id)
-  end
-
   def by_name(name) do
     query =
       from p in Products,
@@ -43,8 +39,21 @@ defmodule Fauxmazon.Products do
     Repo.all(query)
   end
 
+  def by_id(id) do
+    query = from c in Categories,
+    join: pc in ProductsCategories,
+    on: c.id == pc.category_id,
+    where: pc.product_id == ^id ,
+    select: c
+
+    Repo.get(Products, id)
+    |> Map.from_struct
+    |> Map.delete(:__meta__)
+    |> Map.merge(%{categories: Repo.all(query)})
+  end
+
   def by_category(category) do
-    products =
+    products_query =
       from p in Products,
         join: pc in ProductsCategories,
         on: pc.product_id == p.id,
@@ -60,6 +69,6 @@ defmodule Fauxmazon.Products do
     |> List.first
     |> Map.from_struct
     |> Map.delete(:__meta__)
-    |> Map.merge(%{products: Repo.all(products)})
+    |> Map.merge(%{products: Repo.all(products_query)})
   end
 end
