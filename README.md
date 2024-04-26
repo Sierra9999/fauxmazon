@@ -1,32 +1,23 @@
 # Fauxmazon 🛒
 
 Fauxmazon is a fake store API built with the Phoenix framework in Elixir. It provides a simple and scalable solution for managing products and serving them via a RESTful API. Please note that this project is currently in development.
-
-## About Fauxmazon
-
 Fauxmazon simulates the functionality of an e-commerce platform, allowing users to interact with a catalog of products via HTTP endpoints. It provides basic operations for retrieving product information, searching for products, and filtering products by category.
 
 ### Product Interface
 
 Products in the Fauxmazon API have the following properties:
 
-- **ID**: A unique identifier for the product.
-- **Name**: The name or title of the product.
-- **Description**: A brief description of the product.
-- **Price**: The price of the product.
-- **Category**: The category or type of the product.
-- **Brand**: The brand or manufacturer of the product.
-- **Stock**: The current stock or inventory of the product.
-- **Image URL**: The URL of an image representing the product.
-- **Rating**: The average rating of the product (if applicable).
-
-### Collection Interface
-
-Collections in the Fauxmazon API have the following properties:
-
-- **Name**: The name of the collection.
-- **Description**: A brief description of the collection.
-- **Status**: Indicates whether the collection is active or inactive.
+| Field        | Type           | Description                                         |
+|--------------|----------------|-----------------------------------------------------|
+| id           | Integer        | Unique identifier for the product                   |
+| name         | String         | Name or title of the product                        |
+| description  | String         | a description of the product                        |
+| price        | Decimal        | Price of the product                                |
+| brand        | String         | Brand or manufacturer of the product                |
+| stock        | Integer        | Current stock or inventory of the product           |
+| rating       | Decimal        | Average rating of the product (if applicable)       |
+| categories   | Array of Maps  | List of categories the product belongs to           |
+| images       | Array of String| List of image URLs representing the product         |
 
 ### Entry Points
 
