@@ -1,6 +1,7 @@
 defmodule Fauxmazon.Products do
   use Ecto.Schema
   import Ecto.Query
+  alias Fauxmazon.ProductImages
   alias Fauxmazon.{Products, Categories, ProductsCategories, Repo}
 
   @derive {Jason.Encoder,
@@ -11,7 +12,6 @@ defmodule Fauxmazon.Products do
              :price,
              :brand,
              :stock,
-             :image_url,
              :rating
            ]}
   schema "products" do
@@ -20,7 +20,6 @@ defmodule Fauxmazon.Products do
     field :price, :decimal
     field :brand, :string
     field :stock, :integer
-    field :image_url, :string
     field :rating, :decimal
     # inserted_at
     # updated_at
@@ -46,10 +45,19 @@ defmodule Fauxmazon.Products do
     where: pc.product_id == ^id ,
     select: c
 
+    images_query = from pi in ProductImages,
+    where: pi.product_id == ^id,
+    select: pi
+
+    image_list = images_query
+    |> Repo.all
+    |> Enum.map(fn item-> Map.get(item,:url)  end)
+
+
     Repo.get(Products, id)
     |> Map.from_struct
     |> Map.delete(:__meta__)
-    |> Map.merge(%{categories: Repo.all(query)})
+    |> Map.merge(%{images: image_list ,categories: Repo.all(query)})
   end
 
   def by_category(category) do
