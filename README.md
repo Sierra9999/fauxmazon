@@ -18,6 +18,32 @@ Products in the Fauxmazon API have the following properties:
 | rating       | Decimal        | Average rating of the product (if applicable)       |
 | categories   | Array of Maps  | List of categories the product belongs to           |
 | images       | Array of String| List of image URLs representing the product         |
+## Request Example
+
+```json
+{
+  "id": 1,
+  "name": "Organic Skin Care Kit",
+  "description": "A collection of three organic skin care products in one kit.",
+  "brand": "Erbology",
+  "price": "49.99",
+  "rating": "4.50",
+  "stock": 100,
+  "categories": [
+    {
+      "id": 1,
+      "name": "Health & Beauty",
+      "description": "Discover a wide range of products for your health and beauty needs.",
+      "inserted_at": "2024-04-22T17:34:22Z",
+      "updated_at": "2024-04-26T16:29:46Z"
+    }
+  ],
+  "images": [
+    "https://via.placeholder.com/500x500?text=Product+Image+1",
+    "https://via.placeholder.com/500x500?text=Product+Image+2"
+  ]
+}
+```
 
 ### Entry Points
 
@@ -49,3 +75,5 @@ Contributions are welcome! If you'd like to contribute to Fauxmazon, please fork
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
