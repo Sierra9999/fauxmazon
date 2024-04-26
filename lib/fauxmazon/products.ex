@@ -39,25 +39,28 @@ defmodule Fauxmazon.Products do
   end
 
   def by_id(id) do
-    query = from c in Categories,
-    join: pc in ProductsCategories,
-    on: c.id == pc.category_id,
-    where: pc.product_id == ^id ,
-    select: c
+    product = Repo.get(Products, id)
+    if product == nil do
+      raise RuntimeError
+    else
+      categories_query = from c in Categories,
+      join: pc in ProductsCategories,
+      on: c.id == pc.category_id,
+      where: pc.product_id == ^id ,
+      select: c
 
-    images_query = from pi in ProductImages,
-    where: pi.product_id == ^id,
-    select: pi
+      images_query = from pi in ProductImages,
+      where: pi.product_id == ^id,
+      select: pi
+      image_list = images_query
+      |> Repo.all
+      |> Enum.map(fn item-> Map.get(item,:url)  end)
 
-    image_list = images_query
-    |> Repo.all
-    |> Enum.map(fn item-> Map.get(item,:url)  end)
-
-
-    Repo.get(Products, id)
-    |> Map.from_struct
-    |> Map.delete(:__meta__)
-    |> Map.merge(%{images: image_list ,categories: Repo.all(query)})
+      Repo.get(Products, id)
+      |> Map.from_struct
+      |> Map.delete(:__meta__)
+      |> Map.merge(%{images: image_list ,categories: Repo.all(categories_query)})
+    end
   end
 
 

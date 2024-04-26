@@ -6,8 +6,20 @@ defmodule FauxmazonWeb.ProductsController do
   def index(conn, _params) do
     json(conn, all_products())
   end
+
   def show_by_id(conn, %{"id" => id}) do
-    json(conn, by_id(id))
+    try do
+      json(conn, by_id(String.to_integer(id)))
+    rescue
+      ArgumentError ->
+        conn
+        |> put_status(:bad_request)
+        |> json(%{error: "argument should be numeric"})
+      RuntimeError ->
+        conn
+        |> put_status(:not_found)
+        |> json(%{error: "product not found"})
+    end
   end
 
   def show_by_name(conn, params) do
