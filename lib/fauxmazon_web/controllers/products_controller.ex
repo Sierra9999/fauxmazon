@@ -14,10 +14,4 @@ defmodule FauxmazonWeb.ProductsController do
     name = Map.get(params, "name", "")
     json(conn, by_name(name))
   end
-
-  def show_by_category(conn, %{"category" => category}) do
-    json(conn, by_category(category))
-  end
-
-
 end

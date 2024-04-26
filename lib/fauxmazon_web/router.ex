@@ -20,12 +20,12 @@ defmodule FauxmazonWeb.Router do
     get "/", ProductsController, :index
     get "/search", ProductsController, :show_by_name
     get "/:id", ProductsController, :show_by_id
-    get "/category/:category", ProductsController, :show_by_category
   end
 
   scope "/categories",FauxmazonWeb do
     pipe_through :browser
     get "/", CategoriesController, :index
+    get "/:category", CategoriesController, :show_by_category
   end
 
   scope "/", FauxmazonWeb do

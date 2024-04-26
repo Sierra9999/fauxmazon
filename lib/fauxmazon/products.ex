@@ -60,23 +60,5 @@ defmodule Fauxmazon.Products do
     |> Map.merge(%{images: image_list ,categories: Repo.all(query)})
   end
 
-  def by_category(category) do
-    products_query =
-      from p in Products,
-        join: pc in ProductsCategories,
-        on: pc.product_id == p.id,
-        join: c in Categories,
-        on: pc.category_id == c.id,
-        where: c.id == ^category,
-        select: p
 
-    category = from(c in Categories, where: c.id == ^category)
-
-    category
-    |> Repo.all
-    |> List.first
-    |> Map.from_struct
-    |> Map.delete(:__meta__)
-    |> Map.merge(%{products: Repo.all(products_query)})
-  end
 end

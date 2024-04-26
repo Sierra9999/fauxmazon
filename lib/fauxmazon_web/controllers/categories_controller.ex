@@ -1,8 +1,14 @@
 defmodule FauxmazonWeb.CategoriesController do
+  alias Fauxmazon.Categories
+  import Categories
   use FauxmazonWeb, :controller
-  alias Fauxmazon.{Categories, Repo}
+
   def index(conn,_params) do
-    collections = Repo.all(Categories)
-    json(conn, collections)
+    json(conn, all_categories())
   end
+
+  def show_by_category(conn, %{"category" => category}) do
+    json(conn, by_category(category))
+  end
+
 end
