@@ -23,7 +23,7 @@ defmodule FauxmazonWeb.Router do
   end
 
   scope "/categories",FauxmazonWeb do
-    pipe_through :browser
+    pipe_through :api
     get "/", CategoriesController, :index
     get "/:category", CategoriesController, :show_by_category
   end
